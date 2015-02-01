@@ -13,9 +13,9 @@ namespace WCFTestService
     public interface IAccount
     {
         [OperationContract]
-        Money GetAccountBalance();
+        Money GetAccountBalance(UserContextInfo userContextInfo);
 
         [OperationContract]
-        List<Transaction> GetRecentTransactions();
+        List<Transaction> GetRecentTransactions(UserContextInfo userContextInfo);
     }
 }

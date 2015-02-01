@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Activities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -17,15 +18,31 @@ namespace WCFTestService
     {
 
         [Secured]
-        public Money GetAccountBalance()
+        public Money GetAccountBalance(UserContextInfo userContextInfo)
         {
-            throw new NotImplementedException();
+            return new Money(){Amount = 2000, CurrencyCode = CurrencyCode.Inr};
         }
 
         [Secured]
-        public List<Transaction> GetRecentTransactions()
+        public List<Transaction> GetRecentTransactions(UserContextInfo userContextInfo)
         {
-            throw new NotImplementedException();
+            return new List<Transaction>()
+            {
+                new Transaction()
+                {
+                    Id = 1,
+                    Date = DateTime.Now,
+                    Description = "Trans description 1",
+                    Money = new Money(){Amount = 100, CurrencyCode = CurrencyCode.Inr}
+                },
+                new Transaction()
+                {
+                    Id = 2,
+                    Date = DateTime.Now,
+                    Description = "Trans description 2",
+                    Money = new Money(){Amount = 200, CurrencyCode = CurrencyCode.Inr}
+                }
+            };
         }
     }
 }
