@@ -61,15 +61,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account.svc" />
-    <Content Include="Authentication.svc" />
+    <Content Include="Security.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.svc.cs">
       <DependentUpon>Account.svc</DependentUpon>
     </Compile>
-    <Compile Include="Authentication.svc.cs">
-      <DependentUpon>Authentication.svc</DependentUpon>
+    <Compile Include="Security.svc.cs">
+      <DependentUpon>Security.svc</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Filters\SecuredAttribute.cs" />

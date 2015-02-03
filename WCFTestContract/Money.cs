@@ -14,9 +14,12 @@ namespace WCFTestContract
         public CurrencyCode CurrencyCode { get; set; }
     }
 
+    [DataContract]
     public enum CurrencyCode
     {
+        [EnumMember]
         Usd = 100,
+        [EnumMember]
         Inr = 101
     }
 }
