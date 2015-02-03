@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFTestService", "WCFTestService.csproj", "{8F4DDA90-A38A-4715-84BF-675A3CFB293E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFTestService", "WCFTestService\WCFTestService.csproj", "{8F4DDA90-A38A-4715-84BF-675A3CFB293E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCTestApp", "..\MVCTestApp\MVCTestApp.csproj", "{6C856635-BAD9-4A83-88EE-43185F570CFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCTestApp", "MVCTestApp\MVCTestApp.csproj", "{6C856635-BAD9-4A83-88EE-43185F570CFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFTestContract", "..\WCFTestContract\WCFTestContract.csproj", "{40C09B50-B1EE-4FBA-B267-3257B1A66936}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFTestContract", "WCFTestContract\WCFTestContract.csproj", "{40C09B50-B1EE-4FBA-B267-3257B1A66936}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
