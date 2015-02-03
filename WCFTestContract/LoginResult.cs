@@ -9,6 +9,10 @@ namespace WCFTestContract
     [DataContract]
     public class LoginResult
     {
+        [DataMember]
+        public bool LoginSuccess { get; set; }
+
+        [DataMember]
         public string SecurityToken { get; set; }
         /*
          * Other  required information to be returned as part of the login result like,

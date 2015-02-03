@@ -12,6 +12,7 @@ namespace WCFTestService
     [ServiceContract]
     public interface IAccount
     {
+
         [OperationContract]
         Money GetAccountBalance(UserContextInfo userContextInfo);
 

@@ -10,7 +10,10 @@ namespace WCFTestContract
     [DataContract]
     public class Money
     {
+        [DataMember]
         public decimal Amount { get; set; }
+
+        [DataMember]
         public CurrencyCode CurrencyCode { get; set; }
     }
 
@@ -19,6 +22,7 @@ namespace WCFTestContract
     {
         [EnumMember]
         Usd = 100,
+
         [EnumMember]
         Inr = 101
     }

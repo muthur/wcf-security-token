@@ -9,7 +9,10 @@ namespace WCFTestContract
     [DataContract]
     public enum BranchCategory
     {
+        [EnumMember]
         Category1 = 1,
+
+        [EnumMember]
         Category2 = 2
     }
 }

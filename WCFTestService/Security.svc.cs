@@ -13,11 +13,20 @@ namespace WCFTestService
     public class Security : ISecurity
     {
 
-        public LoginResult Login(string userId, string password)
+        public LoginResult Login(string userName, string password)
         {
+            var result = new LoginResult(){LoginSuccess = false};
             //For simplicity sake returning a token based on GUID alone.
             //This part should take care of generating a strongly hashed token based on userid and password after validating the user credentials against the database.
-            return new LoginResult() {SecurityToken = Convert.ToBase64String(Guid.NewGuid().ToByteArray())};
+            if (userName == "user1" && password == "password1")
+            {
+                result.LoginSuccess = true;
+                //result.SecurityToken = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+                var bytes = ASCIIEncoding.ASCII.GetBytes(string.Concat(userName, password));
+                result.SecurityToken = Convert.ToBase64String(bytes);  //dXNlcjFwYXNzd29yZDE
+            }
+
+            return result;
         }
     }
 }

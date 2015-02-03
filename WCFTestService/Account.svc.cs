@@ -17,13 +17,11 @@ namespace WCFTestService
     public class Account : IAccount
     {
 
-        [Secured]
         public Money GetAccountBalance(UserContextInfo userContextInfo)
         {
             return new Money(){Amount = 2000, CurrencyCode = CurrencyCode.Inr};
         }
 
-        [Secured]
         public List<Transaction> GetRecentTransactions(UserContextInfo userContextInfo)
         {
             return new List<Transaction>()
