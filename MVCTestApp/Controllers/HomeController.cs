@@ -26,5 +26,13 @@ namespace MVCTestApp.Controllers
 
             return View();
         }
+
+        public ActionResult DoAuthenticate()
+        {
+            ViewBag.Message = "Welcome!";
+
+
+            return View("Index");
+        }
     }
 }
