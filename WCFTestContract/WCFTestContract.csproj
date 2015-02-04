@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\CustomDispatchMessageInspector.cs" />
+    <Compile Include="Extensions\CustomServiceBehavior.cs" />
     <Compile Include="LoginResult.cs" />
     <Compile Include="BankBranch.cs" />
     <Compile Include="BranchCategory.cs" />
@@ -51,7 +53,9 @@
     <Compile Include="Transaction.cs" />
     <Compile Include="UserContextInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

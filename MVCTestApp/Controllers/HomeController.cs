@@ -17,6 +17,7 @@ namespace MVCTestApp.Controllers
         private AccountClient accountClient;
 
         private const string MESSAGE_HEADER_SECURITY_TOKEN = "security-token";
+        private const string MESSAGE_HEADER_NAMESPACE = "TokenNameSpace";  
         private const string COOKIE_SECURITY_TOKEN = "stkn";
 
         //Service proxy object is injected. This to be later replaced using dependency injection like ninject
@@ -45,11 +46,14 @@ namespace MVCTestApp.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Account()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Account info";
 
-            return View();
+            return View("Account", new AccountInfoViewModel()
+            {
+                AccountBalance = 0
+            });
         }
 
         public ActionResult DoAuthenticate(UserCredentialViewModel userCredential)
@@ -74,21 +78,38 @@ namespace MVCTestApp.Controllers
         {
             ViewBag.Message = "Welcome!";
 
-            using (var scope = new OperationContextScope(securityClient.InnerChannel))
+            decimal balance = 0;
+
+            try
+            {
+                using (var scope = new OperationContextScope(accountClient.InnerChannel))
+                {
+
+                    OperationContext.Current.OutgoingMessageHeaders.Add(GetSecurityTokenHeader());
+
+                    var accountBalance = accountClient.GetAccountBalance(new UserContextInfo());
+                    balance = accountBalance.Amount;
+                }
+            }
+            catch (FaultException fe)
             {
 
-                OperationContext.Current.OutgoingMessageHeaders.Add(GetSecurityTokenHeader());
-
-                var accountBalance = accountClient.GetAccountBalance(new UserContextInfo());
-                //accountBalance.Amount
+                ViewBag.Message = fe.Message;
             }
-            return View("Index");
+            
+            return View("Account",new AccountInfoViewModel()
+            {
+                AccountBalance = balance
+            });
         }
 
         private MessageHeader GetSecurityTokenHeader()
         {
-            return MessageHeader.CreateHeader(MESSAGE_HEADER_SECURITY_TOKEN, "TokenNameSpace",
-                Request.Cookies.AllKeys.Any(x => x == COOKIE_SECURITY_TOKEN) ? Request.Cookies.Get(COOKIE_SECURITY_TOKEN).Value : string.Empty);
+            var securityTokeCookie = Request.Cookies.Get(COOKIE_SECURITY_TOKEN);
+            //return MessageHeader.CreateHeader(MESSAGE_HEADER_SECURITY_TOKEN, MESSAGE_HEADER_NAMESPACE,securityTokeCookie != null ? securityTokeCookie.Value : string.Empty);
+
+            var sessionTokenHeader = new MessageHeader<string>(securityTokeCookie != null ? securityTokeCookie.Value : string.Empty);
+            return sessionTokenHeader.GetUntypedHeader(MESSAGE_HEADER_SECURITY_TOKEN, MESSAGE_HEADER_NAMESPACE);
         }
     }
 }

@@ -1,0 +1,13 @@
+﻿@using MVCTestApp.Models
+@model AccountInfoViewModel
+
+@{
+    ViewBag.Title = "Account info";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<form action="/home/showaccountinfo" method="POST">
+    <input class="form-control" type="text" id="balance" name="balance" readonly value="@Model.AccountBalance"/>
+    <input value="Get Account Balance" class="btn btn-primary" type="submit" />
+</form>
