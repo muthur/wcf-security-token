@@ -70,6 +70,10 @@ namespace MVCTestApp.Controllers
             {
                 Response.Cookies.Add(new HttpCookie("STKN",result.SecurityToken));
             }
+            else
+            {
+                ViewBag.Message = "Login failed!";
+            }
 
             return View("Index");
         }
@@ -86,8 +90,14 @@ namespace MVCTestApp.Controllers
                 {
 
                     OperationContext.Current.OutgoingMessageHeaders.Add(GetSecurityTokenHeader());
+                    var userInfoFromSession = new UserContextInfo()
+                    {
+                        //UserId = Session["userid"])
+                        //BankBranch = Session["BankBranch"]
+                        //ExtensionData = Session["sometablestructure"])
+                    };
 
-                    var accountBalance = accountClient.GetAccountBalance(new UserContextInfo());
+                    var accountBalance = accountClient.GetAccountBalance(userInfoFromSession);
                     balance = accountBalance.Amount;
                 }
             }
